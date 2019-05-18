@@ -36,7 +36,10 @@ class DetailInvoice(models.Model):
         Invoice,
         on_delete=models.CASCADE
     )
-    products = models.ManyToManyField(Product)
+    product_id = models.ForeignKey(
+        Product,
+        on_delete=models.DO_NOTHING
+    )
     amount = models.FloatField(
         validators=[MinValueValidator(0.0)])
     quantity = models.IntegerField(
