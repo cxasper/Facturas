@@ -38,4 +38,11 @@ class DetailInvoicesViewSet(ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
+        self.reduce_product(product, quantity)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def reduce_product(self, product_id, quantity):
+        product = Product.objects.get(pk=product_id)
+        product_quantity = product.quantity
+        product.quantity = product_quantity - quantity
+        product.save()
