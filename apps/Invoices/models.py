@@ -23,7 +23,7 @@ class Invoice(models.Model):
     number = models.IntegerField(
         validators=[MinValueValidator(0)])
 
-    total = models.CharField(max_length=55)
+    total = models.CharField(max_length=55, null=True)
 
     def __str__(self):
         return str(self.id)
