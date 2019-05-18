@@ -39,6 +39,7 @@ class DetailInvoicesViewSet(ModelViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         self.reduce_product(product, quantity)
+        self.get_total(request_copy['invoice_id'])
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def reduce_product(self, product_id, quantity):
@@ -46,3 +47,12 @@ class DetailInvoicesViewSet(ModelViewSet):
         product_quantity = product.quantity
         product.quantity = product_quantity - quantity
         product.save()
+
+    def get_total(self, invoice):
+        invoices_details = DetailInvoice.objects.filter(invoice_id=invoice)
+        total = 0
+        for detail in invoices_details:
+            total = total + detail.amount
+        invoice = Invoice.objects.get(pk=invoice)
+        invoice.total = total
+        invoice.save()
