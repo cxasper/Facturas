@@ -17,6 +17,7 @@ class Client(models.Model):
     last_name = models.CharField(max_length=45)
     dni = models.CharField(max_length=8)
     phone = models.CharField(max_length=9)
+    ruc = models.CharField(max_length=11, null=True)
 
     def __str__(self):
         return str(self.id)

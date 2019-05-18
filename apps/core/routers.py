@@ -13,10 +13,11 @@ from rest_framework.routers import DefaultRouter
 # from ..app_django.routers import router_list as app_django_router
 from apps.clients.routers import clients
 from apps.products.routers import products
+from apps.Invoices.routers import Invoices
 
 # Create your routers here.
 # routers_tuples = (app_django_router,)
-routers_tuples = (clients, products,)
+routers_tuples = (clients, products, Invoices,)
 routers_lists = sum(
     [list(router_tuple) for router_tuple in routers_tuples], [])
 
