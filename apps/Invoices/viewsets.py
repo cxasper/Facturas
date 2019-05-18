@@ -25,6 +25,11 @@ class DetailInvoicesViewSet(ModelViewSet):
     queryset = DetailInvoice.objects.all()
     serializer_class = DetailInvoicesSerializer
 
+    def list(self, request, *args, **kwargs):
+        queryset = DetailInvoice.objects.filter(invoice_id=kwargs['invoice_id'])
+        serializer = DetailInvoicesSerializer(queryset, many=True)
+        return Response(serializer.data)
+
     def create(self, request, *args, **kwargs):
         request_copy = request.data.copy()
         if 'quantity' in request_copy and  'product_id' in request_copy:
@@ -33,7 +38,7 @@ class DetailInvoicesViewSet(ModelViewSet):
             quantity = int(request_copy['quantity'])
             amount = quantity * price_product
             print(request_copy)
-            request_copy.update({ 'amount' : amount })
+            request_copy.update({ 'amount' : amount , 'invoice_id': kwargs['invoice_id']})
         serializer = self.get_serializer(data=request_copy)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
