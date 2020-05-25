@@ -16,11 +16,12 @@ pipeline {
         }
         stage('Search node') {
             steps {
-                sh  '''
-                    node --version
-                    npm install -g serverless
-                    serverless --version
-                '''
+                sh  'node --version'
+            }
+        }
+        stage('Search node') {
+            steps {
+                sh  'serverless --version'
             }
         }
     }
