@@ -12,5 +12,14 @@ pipeline {
                 sh 'ls'
             }
         }
+        stage('Search node') {
+            steps {
+                sh  '''
+                    node --version
+                    npm install -g serverless
+                    serverless --version
+                '''
+            }
+        }
     }
 }
