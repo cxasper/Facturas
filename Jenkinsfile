@@ -19,7 +19,7 @@ pipeline {
                 sh  'node --version'
             }
         }
-        stage('Search node') {
+        stage('Search serverless') {
             steps {
                 sh  'serverless --version'
             }
