@@ -1,6 +1,8 @@
 pipeline {
     agent any
 
+    tools {nodejs "node v10"}
+
     stages {
         stage('Add psycopg2 file at project') {
             steps {
