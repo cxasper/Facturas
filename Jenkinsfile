@@ -7,7 +7,7 @@ pipeline {
                 sh 'pwd'
             }
         }
-        stage('Add psycopg2 file at project') {
+        stage('Add psycoasdapg2 file at project') {
             steps {
                 sh 'ls'
             }
@@ -16,6 +16,8 @@ pipeline {
             steps {
                 sh 'sed "/django/d" requirements_dev.txt > requirements.txt'
             }
+        }
+        stage('Add psycopg2 asdaasda at project') {
             steps {
                 sh 'rm -rf requirements_dev.txt'
             }
