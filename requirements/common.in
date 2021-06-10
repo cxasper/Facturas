@@ -1,7 +1,7 @@
 boto
 boto3
 coreapi
-django < 2.2
+django < 2.3
 django-cors-headers
 django-countries
 django-crispy-forms
